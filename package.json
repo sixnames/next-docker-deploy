@@ -5,8 +5,20 @@
     "build": "next build"
   },
   "dependencies": {
+    "mongodb": "^6.13.0",
     "next": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "pnpm": "^10.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "node": "^23.8.0",
+    "typescript": "^5.7.3"
   }
 }
