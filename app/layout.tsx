@@ -9,7 +9,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'One Day',
+  title: 'App',
 };
 
 export const dynamic = 'force-dynamic';

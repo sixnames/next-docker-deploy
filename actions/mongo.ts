@@ -15,26 +15,20 @@ export async function getDatabase(): Promise<GetDbPayloadInterface> {
     return cachedDb;
   }
 
-  // const uri = `mongodb://${username}:${password}@${host}:${port}`;
-
   const MONGODB_CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
-  const uri = `${MONGODB_CONNECTION_STRING}`;
+  const MONGODB_DATABASE = process.env.MONGODB_DATABASE;
 
-  if (!uri) {
-    throw new Error('Unable to connect to database, no URI provided');
+  if (!MONGODB_CONNECTION_STRING || !MONGODB_DATABASE) {
+    throw new Error('Unable to connect to database, no URI or database name provided');
   }
 
-  console.log(uri);
-
   // If no connection is cached, create a new one
-  const client = await MongoClient.connect(uri, {
+  const client = await MongoClient.connect(MONGODB_CONNECTION_STRING, {
     ignoreUndefined: false,
   });
 
-  const dbName = 'test';
-
   // Select the database through the connection
-  const db = client.db(dbName);
+  const db = client.db(MONGODB_DATABASE);
 
   const payload: GetDbPayloadInterface = {
     db,
