@@ -1,5 +1,5 @@
-import { Db, MongoClient } from 'mongodb';
 import 'dotenv/config';
+import { Db, MongoClient } from 'mongodb';
 
 interface GetDbPayloadInterface {
   db: Db;
