@@ -1,0 +1,21 @@
+services:
+  mongodb:
+    container_name: dev-mongodb
+    restart: always
+    image: mongo:latest
+    logging:
+      driver: none
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+    command:
+      - --storageEngine
+      - wiredTiger
+      - --auth
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./db:/data/db

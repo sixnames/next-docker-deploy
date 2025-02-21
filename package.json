@@ -3,6 +3,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "up-dev-db": "docker-compose -f dev.docker-compose.yml up --build -d",
+    "stop-dev-db": "docker-compose -f dev.docker-compose.yml stop",
+    "down-dev-db": "docker-compose -f dev.docker-compose.yml down",
     "up": "docker-compose up --build -d",
     "stop": "docker-compose stop",
     "down": "docker-compose down"

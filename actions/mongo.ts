@@ -15,20 +15,21 @@ export async function getDatabase(): Promise<GetDbPayloadInterface> {
     return cachedDb;
   }
 
-  const MONGODB_CONNECTION_STRING = process.env.MONGODB_CONNECTION_STRING;
-  const MONGODB_DATABASE = process.env.MONGODB_DATABASE;
+  const MONGODB_URI = process.env.MONGODB_URI;
+  const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
 
-  if (!MONGODB_CONNECTION_STRING || !MONGODB_DATABASE) {
+  if (!MONGODB_URI || !MONGO_DB_NAME) {
     throw new Error('Unable to connect to database, no URI or database name provided');
   }
 
   // If no connection is cached, create a new one
-  const client = await MongoClient.connect(MONGODB_CONNECTION_STRING, {
+  const client = await MongoClient.connect(MONGODB_URI, {
     ignoreUndefined: false,
+    authSource: 'admin',
   });
 
   // Select the database through the connection
-  const db = client.db(MONGODB_DATABASE);
+  const db = client.db(MONGO_DB_NAME);
 
   const payload: GetDbPayloadInterface = {
     db,
